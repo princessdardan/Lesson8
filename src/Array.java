@@ -9,12 +9,17 @@
  * @author dard3940
  */
 public class Array extends javax.swing.JFrame {
+    Student s[];
+    int size, currentstudent;
 
     /**
      * Creates new form Array
      */
     public Array() {
         initComponents();
+        s = new Student[10];
+        size=0;
+        currentstudent=-1;
     }
 
     /**
@@ -36,10 +41,10 @@ public class Array extends javax.swing.JFrame {
         txtmark2 = new javax.swing.JTextField();
         txtmark3 = new javax.swing.JTextField();
         lblavg = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnfirst = new javax.swing.JButton();
+        btnprev = new javax.swing.JButton();
+        btnnext = new javax.swing.JButton();
+        btnlast = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         lblcount = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -79,26 +84,26 @@ public class Array extends javax.swing.JFrame {
 
         lblavg.setBackground(new java.awt.Color(204, 204, 204));
 
-        jButton1.setText("<<");
+        btnfirst.setText("<<");
 
-        jButton2.setText("<");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnprev.setText("<");
+        btnprev.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnprevActionPerformed(evt);
             }
         });
 
-        jButton3.setText(">");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnnext.setText(">");
+        btnnext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnnextActionPerformed(evt);
             }
         });
 
-        jButton4.setText(">>");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnlast.setText(">>");
+        btnlast.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnlastActionPerformed(evt);
             }
         });
 
@@ -136,7 +141,7 @@ public class Array extends javax.swing.JFrame {
                             .addComponent(jLabel5)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnfirst, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel6)))
@@ -147,14 +152,14 @@ public class Array extends javax.swing.JFrame {
                         .addGap(38, 38, 38)
                         .addComponent(jLabel7)
                         .addGap(43, 43, 43)
-                        .addComponent(lblcurrent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblcurrent, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnprev, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(btnnext, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnlast, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -199,10 +204,10 @@ public class Array extends javax.swing.JFrame {
                             .addComponent(lblavg, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1)
-                            .addComponent(jButton3)
-                            .addComponent(jButton4))
+                            .addComponent(btnprev)
+                            .addComponent(btnfirst)
+                            .addComponent(btnnext)
+                            .addComponent(btnlast))
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
@@ -227,17 +232,25 @@ public class Array extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtmark1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnprevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnprevActionPerformed
+        if (currentstudent >0)
+        {
+            currentstudent--;
+            showStudent();
+        }
+    }//GEN-LAST:event_btnprevActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btnnextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnextActionPerformed
+        if(currentstudent<size-1 && currentstudent>-1)
+        {
+            currentstudent++;
+            showStudent();
+        }
+    }//GEN-LAST:event_btnnextActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnlastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlastActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnlastActionPerformed
 
     private void btnmodifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodifyActionPerformed
         // TODO add your handling code here:
@@ -291,14 +304,23 @@ public class Array extends javax.swing.JFrame {
             }
         });
     }
+    public void showStudent(){
+        txtname.setText(s[currentstudent].getName());
+        txtmark1.setText("" + s[currentstudent].getMark(1));
+        txtmark2.setText("" + s[currentstudent].getMark(2));
+        txtmark3.setText("" + s[currentstudent].getMark(3));
+        lblaverage.setText("" + s[currentstudent].getAverage());
+        lblcount.setText("" + size);
+        lblindex.setText("" + currentstudent);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnadd;
+    private javax.swing.JButton btnfirst;
+    private javax.swing.JButton btnlast;
     private javax.swing.JButton btnmodify;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnnext;
+    private javax.swing.JButton btnprev;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
