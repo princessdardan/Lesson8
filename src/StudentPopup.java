@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
  * @author dard3940
  */
 public class StudentPopup extends javax.swing.JDialog {
-
+    Student temp;
     /**
      * Creates new form StudentPopup
      */
@@ -34,6 +34,16 @@ public class StudentPopup extends javax.swing.JDialog {
        }catch(Exception e){JOptionPane.showMessageDialog(this, "Fill out all fields");}
         return marks;
        }
+    public void setForm(Student s)
+    {
+        DefaultTableModel model = (DefaultTableModel)(tblmarks.getModel());
+        model.setValueAt(s.getScore(1), 0,0);
+        model.setValueAt(s.getScore(2), 0,1);
+        model.setValueAt(s.getScore(3), 0,2);
+    }
+    public Student getStudent(){
+        return temp;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

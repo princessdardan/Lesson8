@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -253,21 +256,28 @@ public class Array extends javax.swing.JFrame {
     }//GEN-LAST:event_btnlastActionPerformed
 
     private void btnmodifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodifyActionPerformed
-        // TODO add your handling code here:
+        StudentPopup form = new StudentPopup(this, true);
+        form.setForm(s[currentstudent]);
+        form.setModal(true);
+        form.setLocationRelativeTo(this);
+        form.setVisible(true);
     }//GEN-LAST:event_btnmodifyActionPerformed
 
     private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
-       StudentPopup spop = new StudentPopup(this,true);
-       spop.setModal(true);
-       spop.setLocationRelativeTo(this);
-       spop.setVisible(true);
-       //this code wont run until popup is disposed
-       String name = spop.getName();
-       txtname.setText(name);
-       int[] marks = spop.getMarks();
-       txtmark1.setText(""+ marks[0]);
-       txtmark2.setText(""+ marks[1]);
-       txtmark3.setText(""+ marks[2]);
+       StudentPopup form = new StudentPopup(this, true);
+       form.setModal(true);
+       form.setLocationRelativeTo(this);
+       form.setVisible(true);
+       Student temp = form.getStudent();
+       String em = temp.validateData();
+       if(em==null){
+           s[size]= temp;
+           currentstudent= size;
+           size++;
+           showStudent();
+       }
+       else
+           JOptionPane.showMessageDialog(this, em);
     }//GEN-LAST:event_btnaddActionPerformed
 
     /**
@@ -306,12 +316,12 @@ public class Array extends javax.swing.JFrame {
     }
     public void showStudent(){
         txtname.setText(s[currentstudent].getName());
-        txtmark1.setText("" + s[currentstudent].getMark(1));
-        txtmark2.setText("" + s[currentstudent].getMark(2));
-        txtmark3.setText("" + s[currentstudent].getMark(3));
-        lblaverage.setText("" + s[currentstudent].getAverage());
+        txtmark1.setText("" + s[currentstudent].getScore(1));
+        txtmark2.setText("" + s[currentstudent].getScore(2));
+        txtmark3.setText("" + s[currentstudent].getScore(3));
+        lblavg.setText("" + s[currentstudent].getAverage());
         lblcount.setText("" + size);
-        lblindex.setText("" + currentstudent);
+        lblcurrent.setText("" + currentstudent);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
