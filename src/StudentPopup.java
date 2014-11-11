@@ -1,20 +1,9 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author dard3940
- */
 public class StudentPopup extends javax.swing.JDialog {
     Student temp;
-    /**
-     * Creates new form StudentPopup
-     */
+    
     public StudentPopup(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -153,9 +142,21 @@ public class StudentPopup extends javax.swing.JDialog {
     }//GEN-LAST:event_txtNameActionPerformed
 
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
-       this.dispose();
+        int marks[]=new int[3];
+        String name = txtName.getText();
+        try
+        {
+        for(int x = 0;x < 3;x++){
+            marks[x] = Integer.parseInt(tblmarks.getValueAt(0,x).toString());
+        }              
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Please fill all fields");
+            return;
+        }
+        temp = new Student(name,marks);
+        this.dispose();
     }//GEN-LAST:event_btnOKActionPerformed
-
+   
     /**
      * @param args the command line arguments
      */
